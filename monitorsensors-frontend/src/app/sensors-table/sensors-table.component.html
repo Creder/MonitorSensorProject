@@ -1,0 +1,24 @@
+<table>
+	<tr>
+		<td>Name</td>
+		<td>Model</td>
+		<td>Type</td>
+		<td>range</td>
+		<td>Unit</td>
+		<td>Location</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr *ngFor="let sensor of sensors"><td>{{sensor.name}}</td>
+		<td>{{sensor.model}}</td>
+		<td>{{sensor.type.typeName}}</td>
+		<td>{{sensor.rangeFrom}} - {{sensor.rangeTo}}</td>
+		<td>{{sensor.unit.unitName}}</td>
+		<td>{{sensor.location}}</td>
+		<td><a routerLink="/edit/{{sensor.id}}">Edit</a></td>
+		<td><button (click)="deleteSensor(sensor.id)">Delete</button></td>
+	</tr>
+
+</table>
+
+<button routerLink="/create">Add new Sensor</button>

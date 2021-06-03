@@ -1,0 +1,80 @@
+<div *ngIf=sensor>
+	<div *ngIf="sensor.id !== 0">
+		<h1>Edit Form</h1>
+		<form (ngSubmit) = "editSensor()">
+			
+			<label for=name>Name*</label><br/>
+			<input type="text" [(ngModel)] = "sensor.name" name="name"><br/>
+			<label for="model">Model*</label><br/>
+			<input type="text" [(ngModel)] = "sensor.model" name="model"><br/>
+			<label for="type">Type*</label><br/>
+			<select [(ngModel)] = "sensor.type" name="type">
+				<ng-container  *ngFor="let type of sensorTypes">
+					<ng-container *ngIf="type === sensor.type">
+						<option [ngValue]='type' selected="selected">{{type.typeName}}</option>
+					</ng-container >
+					<ng-container *ngIf="type !== sensor.type">
+						<option [ngValue]='type'>{{type.typeName}}</option>
+					</ng-container >
+				</ng-container>
+			</select><br/>
+
+			<label for="unit">Unit*</label><br/>
+			<select [(ngModel)] = "sensor.unit" name="unit">
+				<ng-container *ngFor="let unit of sensorUnits">
+					<ng-container *ngIf="unit === sensor.unit">
+						<option [ngValue]='unit' selected="selected">{{unit.unitName}}</option>
+					</ng-container>
+					<ng-container *ngIf="unit !== sensor.unit">
+						<option [ngValue]='unit'>{{unit.unitName}}</option>
+					</ng-container>
+				</ng-container>		
+			</select><br/>
+			<label for="range">Range</label><br/>
+			<p>from</p><input  type="number" [(ngModel)] = "sensor.rangeFrom" name="range" min=-200 max=200><br/>
+			<p>to</p><input  type="number" [(ngModel)] = "sensor.rangeTo" name="rang2" min=-200 max=200><br/>
+			<label for="location">Location</label><br/>
+			<input type="text"  [(ngModel)] = "sensor.location" name="location"><br/>
+			<label for="description">Description</label><br/>
+			<input type="text"  [(ngModel)] = "sensor.description" name="description"><br/>
+
+			<button type="submit"></button>
+		</form>
+	</div>
+
+	<div *ngIf="sensor.id == 0">
+		<h1>Add Form</h1>
+		<form (ngSubmit) = "addSensor()">
+			
+			<label for=name>Name*</label><br/>
+			<input type="text" [(ngModel)] = "sensor.name" name="name"><br/>
+			<label for="model">Model*</label><br/>
+			<input type="text" [(ngModel)] = "sensor.model" name="model"><br/>
+			<label for="type">Type*</label><br/>
+			<select [(ngModel)] = "sensor.type"  name="type">
+				<ng-container *ngFor="let type of sensorTypes" >
+					<option  [ngValue]='type'>{{type.typeName}}</option>
+				</ng-container>	
+			</select><br/>
+
+			<label for="unit">Unit*</label><br/>
+			<select [(ngModel)] = "sensor.unit" name="unit">
+				<ng-container *ngFor="let unit of sensorUnits">
+					<option [ngValue]='unit'>{{unit.unitName}}</option>
+				</ng-container>
+			</select><br/>
+			<label for="range">Range</label><br/>
+			<p>from</p><input  type="number" [(ngModel)] = "sensor.rangeFrom" name="range" min=-200 max=200><br/>
+			<p>to</p><input  type="number" [(ngModel)] = "sensor.rangeTo" name="rang2" min=-200 max=200><br/>
+			<label for="location">Location</label><br/>
+			<input type="text"  [(ngModel)] = "sensor.location" name="location"><br/>
+			<label for="description">Description</label><br/>
+			<input type="text"  [(ngModel)] = "sensor.description" name="description"><br/>
+
+			<button type="submit"></button>
+		</form>
+	</div>
+</div>
+<div *ngIf=!sensor>
+	<p> Sensor not found</p>
+</div>
